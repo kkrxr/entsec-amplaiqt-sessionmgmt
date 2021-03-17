@@ -1,0 +1,67 @@
+# API Auto Discovery Configurations
+# API id as defined by the API Manager
+#--------------------------------------------------------------
+
+# apimgr:
+#  id: "16528178"
+
+# API HTTP Listener Configurations
+#--------------------------------------------------------------
+
+api:
+  net:
+    host: "0.0.0.0"
+    port: "8081"
+  path: "/entsec/amplaiqt/sessionmgmt/v1/*"
+
+#--------------------------------------------------------------
+# Database Configuration
+#--------------------------------------------------------------
+database:
+  aurora:
+    schemaName: "APPDATA"
+    username: "DB-AAUSYD-COALINT-DEV-RW"
+    password: "NA9oakd10"
+    query:
+      select: "SELECT \"KEY2\" as \"tokenValue\", \"LAST_SUCCESSFULRUN_DATETIME\" as \"startTime\", \"KEY3\" as \"timeToLive\" FROM \"APPDATA\".process_rundetails where \"COMPONENT_ID\" =:COMPONENT_ID"
+      update: " UPDATE \"APPDATA\".process_rundetails SET \"KEY2\" = :KEY2 WHERE \"COMPONENT_ID\" = :COMPONENT_ID AND \"KEY1\"=:KEY1"
+      
+    conn.pool:
+      jdbcUrl: "jdbc:postgresql://ngi-dev-rdsausyintpsdev.cluster-cktxnmqlwput.us-west-2.rds.amazonaws.com:5432/AAUSYD-COALINT-DEV"
+      maxPoolSize: "10"
+      driverClassName: "org.postgresql.Driver"
+      connectionTimeout: "20000"
+      idleTimeout: "600000"
+      maxLifetime: "1800000"
+      readTimeout: "25000"
+      loginTimeout: "25000"
+#--------------------------------------------------------------
+# Application Configurations
+#--------------------------------------------------------------
+# HTTP Request Configurations
+# ${secure::}
+#--------------------------------------------------------------
+http:
+    coal-int-olg-reference-data-dapi:
+      net:
+        host: "dev.aausyd-ent-api.bhp.internal.rubiconred.com"
+        port: "80"
+        protocol: "HTTP"
+      auth:
+        client_id: "aec63e27813e484c9d41c55511fa159a"
+        client_secret: "0D9d8446d1944dc5a0e02749E620C28A"
+      target:
+        path: "/deventsys-coalint-olg-refdata/entsys/coalint/olg/refdata/v1"
+
+    amplaiqt:
+      SecurityWebService:
+        net:
+          addressBMA: "http://system-proxy.bhp.internal.rubiconred.com:37913/Ampla/WebService/Security/2007/06"
+          addressBMC: "http://system-proxy.bhp.internal.rubiconred.com:37913/Ampla/WebService/Security/2007/06"
+        request:
+          username: "SOA"
+          password: "Password"
+#       auth:
+#         username: ""
+#         password: ""
+#--------------------------------------------------------------

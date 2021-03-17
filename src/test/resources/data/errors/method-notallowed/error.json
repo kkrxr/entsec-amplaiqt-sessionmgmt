@@ -1,0 +1,11 @@
+{
+	"Status": {
+		"Success": false,
+		"Code": "SYSM2PVOYAGE01-111",
+		"Errors": [{
+			"Type": "System",
+			"Message": "${ignore}",
+			"Trace": "${ignore}"
+		}]
+	}
+}

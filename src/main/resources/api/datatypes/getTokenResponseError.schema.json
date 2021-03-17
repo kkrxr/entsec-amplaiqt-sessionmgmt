@@ -1,0 +1,47 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "type": "object",
+  "properties": {
+    "NotificationConfigurationResponse": {
+      "type": "object",
+      "properties": {
+        "Data": {
+          "type": "object"
+        },
+        "Status": {
+          "type": "object",
+          "properties": {
+            "Success": {
+              "type": "boolean"
+            },
+            "Code": {
+              "type": "string"
+            },
+            "Error": {
+              "type": "array",
+              "items": [
+                {
+                  "type": "object",
+                  "properties": {
+                    "Type": {
+                      "type": "string"
+                    },
+                    "Message": {
+                      "type": "string"
+                    },
+                    "Trace": {
+                      "type": "string"
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        }
+      }
+    }
+  },
+  "required": [
+    "NotificationConfigurationResponse"
+  ]
+}

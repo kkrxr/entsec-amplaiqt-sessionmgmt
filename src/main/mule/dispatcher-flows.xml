@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mule xmlns:coal-int-olg-reference-data-dapi="http://www.mulesoft.org/schema/mule/coal-int-olg-reference-data-dapi" xmlns:rxr-util-bhp="http://www.rubiconred.com/bhp/mule/extensions" xmlns:wsc="http://www.mulesoft.org/schema/mule/wsc" xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core" xmlns:db="http://www.mulesoft.org/schema/mule/db" xmlns:aggregators="http://www.mulesoft.org/schema/mule/aggregators" xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns:jms="http://www.mulesoft.org/schema/mule/jms" xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/jms http://www.mulesoft.org/schema/mule/jms/current/mule-jms.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd
+http://www.mulesoft.org/schema/mule/aggregators http://www.mulesoft.org/schema/mule/aggregators/current/mule-aggregators.xsd
+http://www.mulesoft.org/schema/mule/db http://www.mulesoft.org/schema/mule/db/current/mule-db.xsd
+http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd
+http://www.mulesoft.org/schema/mule/wsc http://www.mulesoft.org/schema/mule/wsc/current/mule-wsc.xsd
+http://www.rubiconred.com/bhp/mule/extensions http://www.rubiconred.com/bhp/mule/extensions/current/mule-rxr-util-bhp.xsd
+http://www.mulesoft.org/schema/mule/coal-int-olg-reference-data-dapi http://www.mulesoft.org/schema/mule/coal-int-olg-reference-data-dapi/current/mule-coal-int-olg-reference-data-dapi.xsd">
+	<sub-flow name="df-db-trainserviceeta" doc:id="3a9d42ea-1055-45e4-8c57-2d224fb5cea1">
+		<rxr-util-bhp:bhp-logger doc:name="BHP Logger" logMessage='#["UpdateCitechRequest|" ++ vars.BUSINESS_KEYS.RailKey as String]'/>
+		<db:update doc:id="0a496c96-5518-4eca-b61d-d17d12936ae3" doc:name=""/>
+		<rxr-util-bhp:bhp-logger doc:name="BHP Logger" logMessage='#["UpdateCitechResponse|" ++ vars.BUSINESS_KEYS.RailKey as String]'/>
+	</sub-flow>
+</mule>

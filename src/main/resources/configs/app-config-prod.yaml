@@ -1,0 +1,51 @@
+# API Auto Discovery Configurations
+# API id as defined by the API Manager
+#--------------------------------------------------------------
+
+# apimgr:
+#  id: "16528178"
+
+# API HTTP Listener Configurations
+#--------------------------------------------------------------
+
+api:
+  net:
+    host: "0.0.0.0"
+    port: "8081"
+  path: "/entutil/it/coal/notification/v1/*"
+
+# Database Configuration
+#--------------------------------------------------------------
+
+database:
+  aurora:
+    schemaName: "APPDATA"
+    username: "DB-AAUSYD-COALINT-DEV-RW"
+    password: "NA9oakd10"
+    query:
+      select: "SELECT channel, \"fromCol\", \"toCol\", cc, bcc, template, subject, \"configKey\" FROM \"APPDATA\".notification_config WHERE \"configKey\" = :configKey"
+      upsert: "INSERT INTO \"APPDATA\".notification_config VALUES (:channel, :fromCol, :toCol, :cc, :bcc, :template, :subject, :configKey) ON CONFLICT (\"configKey\") DO UPDATE SET channel=:channel, \"fromCol\"=:fromCol, \"toCol\"=:toCol, cc=:cc, bcc=:bcc, template=:template, subject=:subject"
+      
+    conn.pool:
+      jdbcUrl: "jdbc:postgresql://ngi-dev-rdsausyintpsdev.cluster-cktxnmqlwput.us-west-2.rds.amazonaws.com:5432/AAUSYD-COALINT-DEV"
+      readOnly: "true"
+      ssl: "true"
+      sslmode: "require"
+      reconnectionFrequency: "2000"
+      reconnectionCount: "2"
+      maxPoolSize: "10"
+      driverClassName: "org.postgresql.Driver"
+      connectionTimeout: "20000"
+      idleTimeout: "600000"
+      maxLifetime: "1800000"
+      readTimeout: "25000"
+      loginTimeout: "25000"
+
+# SMTP Configuration
+#--------------------------------------------------------------
+
+smtp:
+  host: "system-proxy.bhp.internal.rubiconred.com"
+  port: "38500"
+  cc: "kranthi.tumma@rubiconred.com"
+  bcc: "kranthi.tumma@rubiconred.com"

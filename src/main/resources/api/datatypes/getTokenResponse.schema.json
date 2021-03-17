@@ -1,0 +1,20 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "type": "object",
+  "properties": {
+    "tokenValue": {
+      "type": "string"
+    },
+    "startTime": {
+      "type": "string"
+    },
+    "timeToLive": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "tokenValue",
+    "startTime",
+    "timeToLive"
+  ]
+}

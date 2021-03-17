@@ -1,0 +1,285 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions name="SecurityWebService"
+	targetNamespace="http://www.citect.com/Ampla/Security/2007/06"
+	xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex"
+	xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd"
+	xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy"
+	xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy"
+	xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract"
+	xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing"
+	xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+	xmlns:tns="http://www.citect.com/Ampla/Security/2007/06" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+	xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/">
+	<wsp:Policy wsu:Id="NetTcpBinding_ISecurityWebService_policy">
+		<wsp:ExactlyOne>
+			<wsp:All>
+				<msb:BinaryEncoding
+					xmlns:msb="http://schemas.microsoft.com/ws/06/2004/mspolicy/netbinary1" />
+				<sp:TransportBinding
+					xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+					<wsp:Policy>
+						<sp:TransportToken>
+							<wsp:Policy>
+								<msf:WindowsTransportSecurity
+									xmlns:msf="http://schemas.microsoft.com/ws/2006/05/framing/policy">
+									<msf:ProtectionLevel>EncryptAndSign</msf:ProtectionLevel>
+								</msf:WindowsTransportSecurity>
+							</wsp:Policy>
+						</sp:TransportToken>
+						<sp:AlgorithmSuite>
+							<wsp:Policy>
+								<sp:Basic256 />
+							</wsp:Policy>
+						</sp:AlgorithmSuite>
+						<sp:Layout>
+							<wsp:Policy>
+								<sp:Strict />
+							</wsp:Policy>
+						</sp:Layout>
+					</wsp:Policy>
+				</sp:TransportBinding>
+				<wsaw:UsingAddressing />
+			</wsp:All>
+		</wsp:ExactlyOne>
+	</wsp:Policy>
+	<wsdl:types>
+		<xsd:schema elementFormDefault="qualified"
+			targetNamespace="http://www.citect.com/Ampla/Security/2007/06">
+			<xsd:element name="CreateSessionRequest" type="tns:CreateSessionRequest" />
+			<xsd:complexType name="CreateSessionRequest">
+				<xsd:sequence>
+					<xsd:element minOccurs="0" maxOccurs="1" name="Username"
+						type="xsd:string" />
+					<xsd:element minOccurs="0" maxOccurs="1" name="Password"
+						type="xsd:string" />
+				</xsd:sequence>
+			</xsd:complexType>
+			<xsd:element name="CreateSessionResponse" type="tns:CreateSessionResponse" />
+			<xsd:complexType name="CreateSessionResponse">
+				<xsd:sequence>
+					<xsd:element minOccurs="0" maxOccurs="1" name="Session"
+						type="tns:Session" />
+				</xsd:sequence>
+			</xsd:complexType>
+			<xsd:complexType name="Session">
+				<xsd:sequence>
+					<xsd:element minOccurs="0" maxOccurs="1" name="SessionID"
+						type="xsd:string" />
+					<xsd:element minOccurs="0" maxOccurs="1" name="User"
+						type="xsd:string" />
+				</xsd:sequence>
+			</xsd:complexType>
+			<xsd:element name="RenewSessionRequest" type="tns:RenewSessionRequest" />
+			<xsd:complexType name="RenewSessionRequest">
+				<xsd:sequence>
+					<xsd:element minOccurs="0" maxOccurs="1" name="Session"
+						type="tns:Session" />
+				</xsd:sequence>
+			</xsd:complexType>
+			<xsd:element name="RenewSessionResponse" type="tns:RenewSessionResponse" />
+			<xsd:complexType name="RenewSessionResponse">
+				<xsd:sequence>
+					<xsd:element minOccurs="0" maxOccurs="1" name="Session"
+						type="tns:Session" />
+				</xsd:sequence>
+			</xsd:complexType>
+			<xsd:element name="ReleaseSessionRequest" type="tns:ReleaseSessionRequest" />
+			<xsd:complexType name="ReleaseSessionRequest">
+				<xsd:sequence>
+					<xsd:element minOccurs="0" maxOccurs="1" name="Session"
+						type="tns:Session" />
+				</xsd:sequence>
+			</xsd:complexType>
+			<xsd:element name="ReleaseSessionResponse" type="tns:ReleaseSessionResponse" />
+			<xsd:complexType name="ReleaseSessionResponse" />
+			<xsd:element name="AuthorizeOperationRequest" type="tns:AuthorizeOperationRequest" />
+			<xsd:complexType name="AuthorizeOperationRequest">
+				<xsd:sequence>
+					<xsd:element minOccurs="0" maxOccurs="1" name="Session"
+						type="tns:Session" />
+					<xsd:element minOccurs="0" maxOccurs="1" name="ObjectId"
+						type="xsd:string" />
+					<xsd:element minOccurs="0" maxOccurs="1" name="Operation"
+						type="xsd:string" />
+				</xsd:sequence>
+			</xsd:complexType>
+			<xsd:element name="AuthorizeOperationResponse" type="tns:AuthorizeOperationResponse" />
+			<xsd:complexType name="AuthorizeOperationResponse">
+				<xsd:sequence>
+					<xsd:element minOccurs="1" maxOccurs="1" name="Authorized"
+						type="xsd:boolean" />
+				</xsd:sequence>
+			</xsd:complexType>
+		</xsd:schema>
+	</wsdl:types>
+	<wsdl:message name="CreateSessionRequest1">
+		<wsdl:part name="CreateSessionRequest" element="tns:CreateSessionRequest" />
+	</wsdl:message>
+	<wsdl:message name="CreateSessionResponse1">
+		<wsdl:part name="CreateSessionResponse" element="tns:CreateSessionResponse" />
+	</wsdl:message>
+	<wsdl:message name="RenewSessionRequest1">
+		<wsdl:part name="RenewSessionRequest" element="tns:RenewSessionRequest" />
+	</wsdl:message>
+	<wsdl:message name="RenewSessionResponse1">
+		<wsdl:part name="RenewSessionResponse" element="tns:RenewSessionResponse" />
+	</wsdl:message>
+	<wsdl:message name="ReleaseSessionRequest1">
+		<wsdl:part name="ReleaseSessionRequest" element="tns:ReleaseSessionRequest" />
+	</wsdl:message>
+	<wsdl:message name="ReleaseSessionResponse1">
+		<wsdl:part name="ReleaseSessionResponse" element="tns:ReleaseSessionResponse" />
+	</wsdl:message>
+	<wsdl:message name="AuthorizeOperationRequest1">
+		<wsdl:part name="AuthorizeOperationRequest" element="tns:AuthorizeOperationRequest" />
+	</wsdl:message>
+	<wsdl:message name="AuthorizeOperationResponse1">
+		<wsdl:part name="AuthorizeOperationResponse" element="tns:AuthorizeOperationResponse" />
+	</wsdl:message>
+	<wsdl:portType name="ISecurityWebService">
+		<wsdl:operation name="CreateSession">
+			<wsdl:input
+				wsaw:Action="http://www.citect.com/Ampla/Security/2007/06:createSessionIn"
+				name="CreateSessionRequest1" message="tns:CreateSessionRequest1" />
+			<wsdl:output
+				wsaw:Action="http://www.citect.com/Ampla/Security/2007/06/ISecurityWebService/CreateSessionResponse"
+				name="CreateSessionResponse1" message="tns:CreateSessionResponse1" />
+		</wsdl:operation>
+		<wsdl:operation name="RenewSession">
+			<wsdl:input
+				wsaw:Action="http://www.citect.com/Ampla/Security/2007/06:renewSessionIn"
+				name="RenewSessionRequest1" message="tns:RenewSessionRequest1" />
+			<wsdl:output
+				wsaw:Action="http://www.citect.com/Ampla/Security/2007/06/ISecurityWebService/RenewSessionResponse"
+				name="RenewSessionResponse1" message="tns:RenewSessionResponse1" />
+		</wsdl:operation>
+		<wsdl:operation name="ReleaseSession">
+			<wsdl:input
+				wsaw:Action="http://www.citect.com/Ampla/Security/2007/06:releaseSessionIn"
+				name="ReleaseSessionRequest1" message="tns:ReleaseSessionRequest1" />
+			<wsdl:output
+				wsaw:Action="http://www.citect.com/Ampla/Security/2007/06/ISecurityWebService/ReleaseSessionResponse"
+				name="ReleaseSessionResponse1" message="tns:ReleaseSessionResponse1" />
+		</wsdl:operation>
+		<wsdl:operation name="AuthorizeOperation">
+			<wsdl:input
+				wsaw:Action="http://www.citect.com/Ampla/Security/2007/06:authorizeOperationIn"
+				name="AuthorizeOperationRequest1" message="tns:AuthorizeOperationRequest1" />
+			<wsdl:output
+				wsaw:Action="http://www.citect.com/Ampla/Security/2007/06/ISecurityWebService/AuthorizeOperationResponse"
+				name="AuthorizeOperationResponse1" message="tns:AuthorizeOperationResponse1" />
+		</wsdl:operation>
+	</wsdl:portType>
+	<wsdl:binding name="BasicHttpBinding_ISecurityWebService"
+		type="tns:ISecurityWebService">
+		<soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+		<wsdl:operation name="CreateSession">
+			<soap:operation
+				soapAction="http://www.citect.com/Ampla/Security/2007/06:createSessionIn"
+				style="document" />
+			<wsdl:input name="CreateSessionRequest1">
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output name="CreateSessionResponse1">
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="RenewSession">
+			<soap:operation
+				soapAction="http://www.citect.com/Ampla/Security/2007/06:renewSessionIn"
+				style="document" />
+			<wsdl:input name="RenewSessionRequest1">
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output name="RenewSessionResponse1">
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="ReleaseSession">
+			<soap:operation
+				soapAction="http://www.citect.com/Ampla/Security/2007/06:releaseSessionIn"
+				style="document" />
+			<wsdl:input name="ReleaseSessionRequest1">
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output name="ReleaseSessionResponse1">
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="AuthorizeOperation">
+			<soap:operation
+				soapAction="http://www.citect.com/Ampla/Security/2007/06:authorizeOperationIn"
+				style="document" />
+			<wsdl:input name="AuthorizeOperationRequest1">
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output name="AuthorizeOperationResponse1">
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+	</wsdl:binding>
+	<wsdl:binding name="NetTcpBinding_ISecurityWebService"
+		type="tns:ISecurityWebService">
+		<wsp:PolicyReference URI="#NetTcpBinding_ISecurityWebService_policy" />
+		<soap12:binding transport="http://schemas.microsoft.com/soap/tcp" />
+		<wsdl:operation name="CreateSession">
+			<soap12:operation
+				soapAction="http://www.citect.com/Ampla/Security/2007/06:createSessionIn"
+				style="document" />
+			<wsdl:input name="CreateSessionRequest1">
+				<soap12:body use="literal" />
+			</wsdl:input>
+			<wsdl:output name="CreateSessionResponse1">
+				<soap12:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="RenewSession">
+			<soap12:operation
+				soapAction="http://www.citect.com/Ampla/Security/2007/06:renewSessionIn"
+				style="document" />
+			<wsdl:input name="RenewSessionRequest1">
+				<soap12:body use="literal" />
+			</wsdl:input>
+			<wsdl:output name="RenewSessionResponse1">
+				<soap12:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="ReleaseSession">
+			<soap12:operation
+				soapAction="http://www.citect.com/Ampla/Security/2007/06:releaseSessionIn"
+				style="document" />
+			<wsdl:input name="ReleaseSessionRequest1">
+				<soap12:body use="literal" />
+			</wsdl:input>
+			<wsdl:output name="ReleaseSessionResponse1">
+				<soap12:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="AuthorizeOperation">
+			<soap12:operation
+				soapAction="http://www.citect.com/Ampla/Security/2007/06:authorizeOperationIn"
+				style="document" />
+			<wsdl:input name="AuthorizeOperationRequest1">
+				<soap12:body use="literal" />
+			</wsdl:input>
+			<wsdl:output name="AuthorizeOperationResponse1">
+				<soap12:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+	</wsdl:binding>
+	<wsdl:service name="SecurityWebService">
+		<wsdl:port name="BasicHttpBinding_ISecurityWebService"
+			binding="tns:BasicHttpBinding_ISecurityWebService">
+			<soap:address
+				location="http://COLSDC-AMP50V.apac.ent.bhpbilliton.net:8889/Ampla/WebService/Security/2007/06" />
+		</wsdl:port>
+		<wsdl:port name="NetTcpBinding_ISecurityWebService" binding="tns:NetTcpBinding_ISecurityWebService">
+			<soap12:address
+				location="net.tcp://COLSDC-AMP50V.apac.ent.bhpbilliton.net/Ampla/WebService/Security/2007/06/Tcp" />
+			<wsa10:EndpointReference>
+				<wsa10:Address>net.tcp://colsdc-amp50v.apac.ent.bhpbilliton.net/Ampla/WebService/Security/2007/06/Tcp
+				</wsa10:Address>
+			</wsa10:EndpointReference>
+		</wsdl:port>
+	</wsdl:service>
+</wsdl:definitions>

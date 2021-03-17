@@ -1,0 +1,37 @@
+
+
+Get Voyage
+KEY = 2601096 | 2599565 | 2625735 | 2594452
+
+
+
+set HOST=localhost:8081
+set NOM_KEY=2625735 
+set NOM_NUM=
+set client_id="05dd6c77433744f182e0842dfbb45cc1"
+set client_secret="c6e63aF89BDf407C970B806D1D7e6a7D"
+
+
+curl -v -H "X-Correlation-ID:my-corr-8763489755" -H "X-Message-ID: my-mesg-123" -H "client_id:%client_id%" -H "client_secret:%client_secret%" -H "Content-Type:application/json" http://%HOST%/deventsys-m2p-lgmgmt-voyage/entsys/m2p/lgmgmt/voyage/v1/voyage/%NOM_KEY%
+
+
+curl -v -H "X-Correlation-ID:my-corr-8763489755" -H "X-Message-ID: my-mesg-123" -H "client_id:%client_id%" -H "client_secret:%client_secret%" -H "Content-Type:application/json" http://%HOST%/entsys/m2p/lgmgmt/voyage/v1/voyage/%NOM_KEY%?nominationNum=%NOM_NUM%
+
+
+
+
+
+set HOST=dev.aausyd-ent-api.bhp.internal.rubiconred.com
+set NOM_KEY=2601096 
+set NOM_NUM=
+set client_id="05dd6c77433744f182e0842dfbb45cc1"
+set client_secret="c6e63aF89BDf407C970B806D1D7e6a7D"
+
+
+curl -v -H "X-Correlation-ID:my-corr-8763489755" -H "X-Message-ID: my-mesg-123" -H "client_id:%client_id%" -H "client_secret:%client_secret%" -H "Content-Type:application/json" http://%HOST%/deventsys-m2p-lgmgmt-voyage/entsys/m2p/lgmgmt/voyage/v1/voyage/%NOM_KEY%
+
+
+
+
+
+

@@ -1,0 +1,18 @@
+{
+  "Response": {
+    "Data": {
+      
+    },
+    "Status": {
+      "Success": false,
+      "Code": "SYSM2PVOYAGE01-100",
+      "Error": [
+        {
+          "Type": "Security",
+          "Message": "${ignore}",
+          "Trace": "${ignore}"
+        }
+      ]
+    }
+  }
+}
